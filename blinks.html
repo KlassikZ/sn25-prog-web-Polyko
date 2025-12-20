@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИБКИ - Каталог образцов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка с активной вкладкой "Блики" -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <h1 class="logo">ИБКИ</h1>
+                <p class="logo-subtitle">Институт Био-Ксенологических Исследований</p>
+                <div class="access-level">
+                    <span class="access-badge">ДОСТУП: LEVEL-3</span>
+                    <div class="access-light active"></div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">ГЛАВНЫЙ АРХИВ</a></li>
+                    <li><a href="staff.html">ПЕРСОНАЛ</a></li>
+                    <li><a href="blinks.html" class="nav-active">ОБРАЗЦЫ ("БЛИКИ")</a></li>
+                    <li><a href="building.html">СТРУКТУРА КОМПЛЕКСА</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="high-alert">
+            <div class="alert-content">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-text">
+                    <strong>ПОВЫШЕННЫЙ РЕЖИМ БЕЗОПАСНОСТИ</strong>
+                    <p>Прямой контакт с образцами запрещен. Все наблюдения - только через защитное стекло класса IV.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="specimens-intro">
+            <h1>КАТАЛОГ ОБРАЗЦОВ: "ЛЮМИ-КОГНИТЭ"</h1>
+            <p class="specimens-subtitle">Био-ксенологические организмы, демонстрирующие свойства биолюминесценции, мимикрии и телепатии.</p>
+            
+            <div class="specimens-stats">
+                <div class="stat-box">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">активных образца</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">инцидентов за 30 дней</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">98.7%</span>
+                    <span class="stat-label">стабильности контейнеров</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="specimens-grid">
+            <!-- Образец L109KB -->
+            <article class="specimen-card danger">
+                <div class="specimen-header">
+                    <h3 class="specimen-code">L109KB</h3>
+                    <div class="specimen-status">
+                        <span class="status-indicator active"></span>
+                        <span class="status-text">АКТИВЕН</span>
+                    </div>
+                </div>
+                
+                <div class="specimen-visual">
+                    <div class="visual-container">
+                        <img src="images/blinks/L109KB-scan.png" alt="Тепловой скан L109KB" class="specimen-scan" loading="lazy">
+                        <div class="visual-overlay">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                    <p class="visual-caption">Термальное сканирование. Область повышенной активности в сегменте C-4.</p>
+                </div>
+                
+                <div class="specimen-data">
+                    <div class="data-row">
+                        <span class="data-label">Дата поступления:</span>
+                        <span class="data-value">12.10.2023</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Место обнаружения:</span>
+                        <span class="data-value">Зона отчуждения №7</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Уровень угрозы:</span>
+                        <span class="data-value threat-high">ВЫСОКИЙ</span>
+                    </div>
+                    
+                    <div class="data-section">
+                        <h4>Проявленные свойства:</h4>
+                        <ul class="properties-list">
+                            <li>
+                                <span class="property-name">Биолюминесценция</span>
+                                <div class="property-bar">
+                                    <div class="property-fill" style="width: 90%"></div>
+                                    <span class="property-value">9/10</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="property-name">Мимикрия</span>
+                                <div class="property-bar">
+                                    <div class="property-fill" style="width: 70%"></div>
+                                    <span class="property-value">7/10</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="property-name">Телепатический резонанс</span>
+                                <div class="property-bar">
+                                    <div class="property-fill" style="width: 85%"></div>
+                                    <span class="property-value">8.5/10</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="data-section">
+                        <h4>Особые примечания:</h4>
+                        <p class="specimen-notes">Проявляет избирательный телепатический контакт с персоналом женского пола. В присутствии стажера Ковалевой наблюдается синхронизация паттернов биолюминесценции. Рекомендовано ограничить взаимодействие.</p>
+                    </div>
+                    
+                    <div class="data-section">
+                        <h4>Последний инцидент:</h4>
+                        <p class="incident-log">14.03.2025: Самопроизвольная генерация когерентного излучения силой 120 люмен в течение 17 секунд. Причина неизвестна.</p>
+                    </div>
+                </div>
+                
+                <div class="specimen-footer">
+                    <button class="btn-log" data-specimen="L109KB">ЗАПИСАТЬ НАБЛЮДЕНИЕ</button>
+                    <button class="btn-details" data-specimen="L109KB">ПОЛНОЕ ДОСЬЕ (УРОВЕНЬ 4)</button>
+                </div>
+            </article>
+
+            <!-- Остальные образцы по аналогии -->
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <!-- Подвал -->
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
