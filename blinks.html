@@ -150,5 +150,47 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- Модальное окно для сообщения о недостаточном доступе -->
+<div id="accessDeniedModal" class="modal-overlay">
+    <div class="modal-content access-denied">
+        <div class="modal-header">
+            <h2 class="modal-title">⛔ ДОСТУП ЗАПРЕЩЁН</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="access-warning-icon">
+                <div class="warning-pulse"></div>
+                <span class="warning-text">⚠️</span>
+            </div>
+            
+            <div class="access-info">
+                <h3>НЕДОСТАТОЧНО ПРАВ ДОСТУПА</h3>
+                <p class="current-access">
+                    Ваш текущий уровень: <span id="currentAccessLevel" class="level-badge">LEVEL-?</span>
+                </p>
+                <p class="required-access">
+                    Требуется уровень: <span id="requiredAccessLevel" class="level-badge required">LEVEL-?</span>
+                </p>
+                
+                <div class="access-details">
+                    <p>Для доступа к этому разделу необходимы дополнительные полномочия.</p>
+                    
+                    <div class="access-hint">
+                        <h4>Как получить доступ:</h4>
+                        <ul>
+                            <li>Найдите учетные данные более высокого уровня</li>
+                            <li>Обратитесь к руководителю проекта</li>
+                            <li>Проверьте секретные документы в других разделах</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="closeModalBtn" class="modal-btn">ПОНЯТНО</button>
+            <button id="tryHackBtn" class="modal-btn secondary">ПОПРОБОВАТЬ ВЗЛОМАТЬ</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
