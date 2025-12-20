@@ -49,18 +49,155 @@ function updateUIForUserLevel(level) {
     }
     
     // Скрываем/показываем элементы навигации
-    const navItems = document.querySelectorAll('.main-nav a');
+    const navItems = document.querySelectorAll('.main-nav li');
     navItems.forEach(item => {
-        const page = item.getAttribute('href');
+        const link = item.querySelector('a');
+        const page = link.getAttribute('href');
         
         // Проверяем доступ к каждой странице
         if (!checkIfUserCanAccessPage(level, page)) {
-            item.style.display = 'none';
+            // Вместо скрытия - делаем недоступной
+            item.classList.add('restricted');
+            link.classList.add('restricted-link');
+            
+            // Сохраняем оригинальный href для возможного будущего доступа
+            link.setAttribute('data-original-href', page);
+            link.href = '#';
+            
+            // Добавляем иконку замка
+            const lockIcon = document.createElement('span');
+            lockIcon.className = 'lock-icon';
+            lockIcon.innerHTML = '🔒';
+            link.appendChild(lockIcon);
+        } else {
+            item.classList.remove('restricted');
+            link.classList.remove('restricted-link');
+            
+            // Восстанавливаем оригинальную ссылку
+            if (link.getAttribute('data-original-href')) {
+                link.href = link.getAttribute('data-original-href');
+            }
+            
+            // Удаляем иконку замка если есть
+            const lockIcon = link.querySelector('.lock-icon');
+            if (lockIcon) lockIcon.remove();
         }
     });
     
     // Добавляем кнопку выхода
     addLogoutButton();
+    
+    // Вешаем обработчики на заблокированные вкладки
+    setupRestrictedLinks(level);
+}
+
+// Добавьте эту функцию в js/main.js
+function setupRestrictedLinks(level) {
+    const restrictedLinks = document.querySelectorAll('.restricted-link');
+    
+    restrictedLinks.forEach(link => {
+        // Удаляем старые обработчики
+        link.removeEventListener('click', handleRestrictedClick);
+        
+        // Добавляем новый обработчик
+        link.addEventListener('click', handleRestrictedClick);
+    });
+}
+
+function handleRestrictedClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const link = this;
+    const page = link.getAttribute('data-original-href');
+    const userLevel = auth.getUserLevel();
+    
+    // Определяем требуемый уровень для этой страницы
+    const requiredLevel = getRequiredLevelForPage(page);
+    
+    // Показываем модальное окно
+    showAccessDeniedModal(userLevel, requiredLevel, page);
+}
+
+function getRequiredLevelForPage(page) {
+    const pageAccess = {
+        1: ['index.html', 'building.html'],
+        2: ['index.html', 'building.html', 'staff.html'],
+        3: ['index.html', 'building.html', 'staff.html', 'blinks.html'],
+        4: ['index.html', 'building.html', 'staff.html', 'blinks.html', 'secrets.html']
+    };
+    
+    // Находим минимальный уровень, который имеет доступ к этой странице
+    for (let level = 1; level <= 4; level++) {
+        if (pageAccess[level] && pageAccess[level].includes(page)) {
+            return level;
+        }
+    }
+    
+    return 4; // По умолчанию самый высокий уровень
+}
+
+function showAccessDeniedModal(currentLevel, requiredLevel, page) {
+    const modal = document.getElementById('accessDeniedModal');
+    const currentLevelEl = document.getElementById('currentAccessLevel');
+    const requiredLevelEl = document.getElementById('requiredAccessLevel');
+    
+    // Обновляем информацию
+    currentLevelEl.textContent = `LEVEL-${currentLevel}`;
+    requiredLevelEl.textContent = `LEVEL-${requiredLevel}`;
+    
+    // Показываем модальное окно
+    modal.style.display = 'block';
+    
+    // Название страницы для отладки (можно использовать в будущем)
+    console.log(`Попытка доступа: ${page}, требуется LEVEL-${requiredLevel}`);
+    
+    // Обработчики закрытия
+    const closeBtn = document.querySelector('.modal-close');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const tryHackBtn = document.getElementById('tryHackBtn');
+    
+    const closeModal = () => {
+        modal.style.display = 'none';
+    };
+    
+    closeBtn.onclick = closeModal;
+    closeModalBtn.onclick = closeModal;
+    
+    // Закрытие по клику вне окна
+    modal.onclick = (e) => {
+        if (e.target === modal) closeModal();
+    };
+    
+    // Кнопка "Попробовать взломать" (для атмосферы)
+    if (tryHackBtn) {
+        tryHackBtn.onclick = () => {
+            // Эффект "взлома"
+            tryHackBtn.textContent = 'ВЗЛОМ...';
+            tryHackBtn.disabled = true;
+            
+            // Имитация взлома
+            setTimeout(() => {
+                tryHackBtn.textContent = 'НЕУДАЧА...';
+                tryHackBtn.style.background = 'linear-gradient(to right, #333, #000)';
+                
+                setTimeout(() => {
+                    tryHackBtn.textContent = 'ПОПРОБОВАТЬ ВЗЛОМАТЬ';
+                    tryHackBtn.disabled = false;
+                    tryHackBtn.style.background = '';
+                    closeModal();
+                }, 1000);
+            }, 2000);
+        };
+    }
+    
+    // Escape для закрытия
+    document.addEventListener('keydown', function closeOnEscape(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', closeOnEscape);
+        }
+    });
 }
 
 function checkPageAccess(level) {
