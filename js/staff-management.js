@@ -325,7 +325,8 @@ class StaffManager {
             
             <div class="staff-card-body">
                 <div class="staff-photo">
-                    <img src="${staff.photo}" alt="${staff.name}" loading="lazy" 
+                    <img src="${staff.photo}" alt="${staff.name}" 
+                         loading="lazy" 
                          onerror="this.src='images/staff/default.jpg'">
                     <div class="photo-overlay">
                         <span class="photo-caption ${staff.status === 'present' ? 'present' : 'absent'}">
