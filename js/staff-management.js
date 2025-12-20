@@ -329,9 +329,12 @@ class StaffManager {
                          loading="lazy" 
                          onerror="this.src='images/staff/default.jpg'">
                     <div class="photo-overlay">
-                        <span class="photo-caption ${staff.status === 'present' ? 'present' : 'absent'}">
-                            ${staff.status === 'present' ? 'НА МЕСТЕ' : 'ОТСУТСТВУЕТ'}
-                        </span>
+                        <div class="status-badge ${staff.status === 'present' ? 'present' : 'absent'}">
+                            <span class="status-dot"></span>
+                            <span class="status-text">
+                                ${staff.status === 'present' ? 'НА МЕСТЕ' : 'ОТСУТСТВУЕТ'}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 
