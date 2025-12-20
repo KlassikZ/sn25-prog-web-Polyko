@@ -1,0 +1,370 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ИБКИ ===== */
+
+/* Подключение дополнительных стилей для building */
+@import url('building.css');
+
+:root {
+    /* Цветовая палитра */
+    --color-primary: #0a0a16;
+    --color-secondary: #003a3a;
+    --color-accent: #00ffea;
+    --color-accent-glow: rgba(0, 255, 234, 0.3);
+    --color-danger: #ff0040;
+    --color-warning: #ffaa00;
+    --color-success: #00ff88;
+    --color-text: #e0e0e0;
+    --color-text-dim: #888;
+    
+    /* Шрифты */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Share Tech Mono', monospace;
+    --font-size-base: 16px;
+    
+    /* Эффекты */
+    --glow-shadow: 0 0 10px var(--color-accent-glow);
+    --danger-glow: 0 0 15px rgba(255, 0, 64, 0.5);
+}
+
+/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 58, 58, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 255, 234, 0.05) 0%, transparent 20%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== ШАПКА САЙТА ===== */
+.main-header {
+    background: linear-gradient(to bottom, #000 0%, #0a0a16 100%);
+    border-bottom: 1px solid var(--color-secondary);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    text-shadow: var(--glow-shadow);
+    letter-spacing: 2px;
+}
+
+.logo-subtitle {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.access-level {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.access-badge {
+    background: var(--color-secondary);
+    color: var(--color-accent);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 255, 234, 0.3);
+}
+
+.access-light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #333;
+    position: relative;
+}
+
+.access-light.active {
+    background: var(--color-success);
+    box-shadow: 0 0 10px var(--color-success);
+}
+
+.access-light::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent);
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1px;
+    background: #111;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.main-nav li {
+    flex: 1;
+}
+
+.main-nav a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav a:hover {
+    color: var(--color-text);
+    background: rgba(0, 58, 58, 0.3);
+}
+
+.main-nav a.nav-active {
+    color: var(--color-accent);
+    background: rgba(0, 58, 58, 0.6);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.main-nav a.nav-active::before {
+    content: '▶';
+    position: absolute;
+    left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===== КАРТОЧКИ И КОМПОНЕНТЫ ===== */
+.staff-card, .specimen-card {
+    background: rgba(10, 20, 30, 0.8);
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.staff-card:hover, .specimen-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow-shadow);
+}
+
+.staff-card.danger, .specimen-card.danger {
+    border-color: var(--color-danger);
+    box-shadow: var(--danger-glow);
+}
+
+/* ===== ВКЛАДКИ ЭТАЖЕЙ ===== */
+.floor-selector {
+    display: flex;
+    min-height: 500px;
+    background: rgba(5, 10, 20, 0.9);
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.floor-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    background: #000;
+    border-right: 1px solid var(--color-secondary);
+}
+
+.floor-tab {
+    padding: 20px 15px;
+    color: var(--color-text-dim);
+    cursor: pointer;
+    border-bottom: 1px solid #111;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.floor-tab:hover {
+    background: rgba(0, 58, 58, 0.2);
+    color: var(--color-text);
+}
+
+.tab-number {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    margin-bottom: 5px;
+}
+
+.tab-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    margin-bottom: 3px;
+}
+
+.tab-subtitle {
+    font-size: 0.8rem;
+    color: var(--color-text-dim);
+}
+
+input[type="radio"]:checked + .floor-tabs .floor-tab {
+    background: var(--color-secondary);
+    color: var(--color-accent);
+    border-left: 3px solid var(--color-accent);
+}
+
+.floor-contents {
+    flex: 1;
+    padding: 30px;
+    position: relative;
+}
+
+.floor-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#floor1:checked ~ .floor-contents .floor-content[data-floor="1"],
+#floor2:checked ~ .floor-contents .floor-content[data-floor="2"],
+#floor3:checked ~ .floor-contents .floor-content[data-floor="3"] {
+    display: block;
+}
+
+/* ===== ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ ===== */
+.btn-confirm, .btn-log, .btn-details {
+    background: linear-gradient(to right, var(--color-secondary), #005555);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 12px 24px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-confirm:hover, .btn-log:hover, .btn-details:hover {
+    background: linear-gradient(to right, #005555, var(--color-secondary));
+    box-shadow: var(--glow-shadow);
+    transform: scale(1.05);
+}
+
+.btn-confirm:active, .btn-log:active, .btn-details:active {
+    transform: scale(0.98);
+}
+
+/* ===== ПОДВАЛ ===== */
+.main-footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid var(--color-secondary);
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-accent);
+}
+
+.footer-warning {
+    color: var(--color-warning);
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+    }
+    
+    .floor-selector {
+        flex-direction: column;
+    }
+    
+    .floor-tabs {
+        width: 100%;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--color-secondary);
+    }
+    
+    .floor-tab {
+        flex: 1;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    
+    .complex-layout {
+        flex-direction: column;
+    }
+}
+
