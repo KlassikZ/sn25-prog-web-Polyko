@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИБКИ - Система доступа</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: rgba(10, 20, 30, 0.95);
+            border: 2px solid var(--color-secondary);
+            border-radius: 10px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 30px rgba(0, 255, 234, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            color: var(--color-text);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-family: var(--font-heading);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--color-secondary);
+            border-radius: 5px;
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 10px var(--color-accent-glow);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--color-secondary), #005555);
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+            border-radius: 5px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #005555, var(--color-secondary));
+            box-shadow: var(--glow-shadow);
+            transform: translateY(-2px);
+        }
+        
+        .access-levels {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            border-left: 3px solid var(--color-accent);
+        }
+        
+        .access-levels h3 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .level-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        
+        .level-name {
+            color: var(--color-text);
+        }
+        
+        .level-desc {
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
+        }
+        
+        .error-message {
+            color: var(--color-danger);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
+            animation: glitch 0.3s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 234, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 234, 0.4); }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <h1 class="logo">ИБКИ</h1>
+                <p class="logo-subtitle">Система контроля доступа</p>
+                <div class="access-level">
+                    <span class="access-badge">НЕ АВТОРИЗОВАН</span>
+                    <div class="access-light"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="login-header">
+                    <h1>СИСТЕМА ДОСТУПА ИБКИ</h1>
+                    <p>Введите идентификатор и код доступа</p>
+                </div>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label class="form-label">ИДЕНТИФИКАТОР:</label>
+                        <input type="text" id="username" class="form-input" 
+                               placeholder="Например: GEN-01-ALPHA" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">КОД ДОСТУПА:</label>
+                        <input type="password" id="password" class="form-input" 
+                               placeholder="Введите секретный код" required>
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message">
+                        ⚠️ Неверный идентификатор или код доступа
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        ПОДКЛЮЧИТЬСЯ К СИСТЕМЕ
+                    </button>
+                </form>
+                
+                <div class="access-levels">
+                    <h3>УРОВНИ ДОСТУПА:</h3>
+                    <div class="level-item">
+                        <span class="level-name">LEVEL-1</span>
+                        <span class="level-desc">Административный персонал</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-name">LEVEL-2</span>
+                        <span class="level-desc">Технический персонал</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-name">LEVEL-3</span>
+                        <span class="level-desc">Исследователи</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-name">LEVEL-4</span>
+                        <span class="level-desc">Руководство проекта</span>
+                    </div>
+                </div>
+                
+                <div class="login-hint">
+                    <p style="text-align: center; color: var(--color-text-dim); font-size: 0.8rem; margin-top: 20px;">
+                        💡 Подсказка: Идентификаторы и коды могут быть найдены в документации проекта
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // База данных пользователей (в реальном проекте это должно быть на сервере)
+        const users = {
+            // LEVEL-1: Административный персонал
+            'ADMIN-001': { password: 'secure123', level: 1, name: 'Администратор' },
+            'GUARD-007': { password: 'watchdog', level: 1, name: 'Охрана' },
+            
+            // LEVEL-2: Технический персонал  
+            'TECH-101': { password: 'reactor4', level: 2, name: 'Техник' },
+            'ENG-202': { password: 'quantum', level: 2, name: 'Инженер' },
+            
+            // LEVEL-3: Исследователи
+            'RES-303': { password: 'luminox', level: 3, name: 'Исследователь' },
+            'DOC-404': { password: 'biochem', level: 3, name: 'Доктор' },
+            
+            // LEVEL-4: Руководство
+            'DIR-001': { password: 'omega7', level: 4, name: 'Директор' },
+            'GEN-ALPHA': { password: 'projectX', level: 4, name: 'Главный генетик' }
+        };
+        
+        // Страницы, доступные для каждого уровня
+        const pageAccess = {
+            1: ['index.html', 'building.html'], // Только главная и здание
+            2: ['index.html', 'building.html', 'staff.html'],
+            3: ['index.html', 'building.html', 'staff.html', 'blinks.html'],
+            4: ['index.html', 'building.html', 'staff.html', 'blinks.html', 'secrets.html'] // Все страницы + секретные
+        };
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim().toUpperCase();
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('errorMessage');
+            
+            // Проверка учетных данных
+            if (users[username] && users[username].password === password) {
+                const user = users[username];
+                
+                // Сохраняем данные пользователя
+                sessionStorage.setItem('ibki_user', JSON.stringify({
+                    username: username,
+                    level: user.level,
+                    name: user.name,
+                    loginTime: new Date().toISOString()
+                }));
+                
+                // Эффект успешного входа
+                document.querySelector('.login-btn').textContent = 'ДОСТУП РАЗРЕШЁН';
+                document.querySelector('.login-btn').style.background = 'linear-gradient(to right, #00aa00, #005500)';
+                
+                // Перенаправляем на главную страницу
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+                
+            } else {
+                // Неверные данные
+                errorElement.style.display = 'block';
+                document.getElementById('password').value = '';
+                
+                // Эффект ошибки
+                const inputs = document.querySelectorAll('.form-input');
+                inputs.forEach(input => {
+                    input.style.borderColor = 'var(--color-danger)';
+                    input.style.animation = 'shake 0.5s';
+                });
+                
+                setTimeout(() => {
+                    inputs.forEach(input => {
+                        input.style.borderColor = '';
+                        input.style.animation = '';
+                    });
+                }, 500);
+            }
+        });
+        
+        // Эффект дрожания для ошибок
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Автозаполнение для тестирования (можно удалить в финальной версии)
+        document.addEventListener('keydown', function(e) {
+            // Alt+1 для быстрого входа как LEVEL-1
+            if (e.altKey && e.key === '1') {
+                document.getElementById('username').value = 'ADMIN-001';
+                document.getElementById('password').value = 'secure123';
+            }
+            // Alt+2 для LEVEL-2
+            if (e.altKey && e.key === '2') {
+                document.getElementById('username').value = 'TECH-101';
+                document.getElementById('password').value = 'reactor4';
+            }
+            // Alt+3 для LEVEL-3
+            if (e.altKey && e.key === '3') {
+                document.getElementById('username').value = 'RES-303';
+                document.getElementById('password').value = 'luminox';
+            }
+            // Alt+4 для LEVEL-4
+            if (e.altKey && e.key === '4') {
+                document.getElementById('username').value = 'DIR-001';
+                document.getElementById('password').value = 'omega7';
+            }
+        });
+    </script>
+</body>
+</html>
