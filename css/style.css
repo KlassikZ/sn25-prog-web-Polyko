@@ -206,14 +206,6 @@ body {
     position: relative;
 }
 
-/* Само изображение */
-.staff-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Сохраняет пропорции, обрезая если нужно */
-    transition: transform 0.3s;
-}
-
 
 .staff-card:hover, .specimen-card:hover {
     transform: translateY(-5px);
@@ -654,6 +646,12 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .staff-photo {
+        width: 150px;  /* Было 200px */
+        height: 180px; /* Было 250px */
+        min-width: 150px;
     }
     
     .main-nav ul {
