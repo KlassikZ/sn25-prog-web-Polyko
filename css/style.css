@@ -198,23 +198,21 @@ body {
 /* Контейнер для фото */
 .staff-photo {
     width: 180px;
-    /* УБРАТЬ aspect-ratio: 3/4; */
+    /* ЗАМЕНИТЬ aspect-ratio: 3/4 на: */
+    height: auto; /* Гибкая высота */
     min-width: 180px;
-    max-height: 220px; /* Ограничиваем максимальную высоту */
-    background: rgba(10, 20, 30, 0.7); /* Фон на случай пустого места */
+    max-height: 240px; /* Максимальная высота чуть больше */
+    background: rgba(10, 20, 30, 0.7);
+    padding: 10px; /* Отступы внутри */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-radius: 5px;
-    border: 1px solid var(--color-secondary);
 }
 
 .staff-photo img {
-    width: 100%;
-    height: auto; /* Автоматическая высота */
-    max-height: 100%; /* Не превышает контейнер */
-    object-fit: contain; /* Показывает всё изображение без обрезки */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ключевое изменение! */
 }
 .staff-card:hover, .specimen-card:hover {
     transform: translateY(-5px);
