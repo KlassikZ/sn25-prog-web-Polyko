@@ -313,28 +313,32 @@ class StaffManager {
         }
         
         card.innerHTML = `
-            <div class="staff-card-header">
-                <div class="staff-id">
-                    <span class="id-label">ИДЕНТИФИКАТОР:</span>
-                    <span class="id-value">${staff.id}</span>
+                <div class="staff-card-header">
+                    <div class="staff-id">
+                        <span class="id-label">ИДЕНТИФИКАТОР:</span>
+                        <span class="id-value">${staff.id}</span>
+                    </div>
+                    <div class="staff-clearance">
+                        <span class="clearance-badge ${levelClass}">ДОПУСК: LEVEL-${staff.level}</span>
+                    </div>
                 </div>
-                <div class="staff-clearance">
-                    <span class="clearance-badge ${levelClass}">ДОПУСК: LEVEL-${staff.level}</span>
-                </div>
-            </div>
-            
-            <div class="staff-card-body">
-                <div class="staff-photo">
-                    <img src="${staff.photo}" alt="${staff.name}" 
-                         loading="lazy" 
-                         onerror="this.src='images/staff/default.jpg'">
-                    <div class="photo-overlay">
-                        <div class="status-badge ${staff.status === 'present' ? 'present' : 'absent'}">
-                            <span class="status-dot"></span>
-                            <span class="status-text">
-                                ${staff.status === 'present' ? 'НА МЕСТЕ' : 'ОТСУТСТВУЕТ'}
-                            </span>
-                        </div>
+                
+                <div class="staff-card-body">
+                    <!-- КОНТЕЙНЕР ДЛЯ ФОТО И СТАТУСА -->
+                    <div class="staff-photo-container">
+                    <!-- Статус НАД фотографией -->
+                    <div class="status-badge ${staff.status === 'present' ? 'present' : 'absent'}">
+                        <span class="status-dot"></span>
+                        <span class="status-text">
+                            ${staff.status === 'present' ? 'НА МЕСТЕ' : 'ОТСУТСТВУЕТ'}
+                        </span>
+                    </div>
+                    
+                    <!-- Фотография -->
+                    <div class="staff-photo">
+                        <img src="${staff.photo}" alt="${staff.name}" 
+                             loading="lazy" 
+                             onerror="this.src='images/staff/default.jpg'">
                     </div>
                 </div>
                 
