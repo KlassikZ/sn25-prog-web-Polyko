@@ -302,21 +302,23 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
     transform: scale(1.05);
 }
 
-/* ===== СТИЛИ ДЛЯ ЗАБЛОКИРОВАННЫХ ВКЛАДОК ===== */
 .main-nav li.restricted {
-    opacity: 0.7;
     position: relative;
 }
 
 .main-nav a.restricted-link {
-    color: #666 !important;
-    background: rgba(30, 0, 0, 0.3) !important;
-    border-bottom: 2px solid #400 !important;
+    /* УБИРАЕМ постоянный красный цвет - делаем как у обычных ссылок */
+    color: var(--color-text-dim) !important;
+    background: transparent !important;
+    border-bottom: 2px solid transparent !important;
     cursor: not-allowed;
+    position: relative;
     transition: all 0.3s;
 }
 
+/* Обычное состояние - никакого красного! */
 .main-nav a.restricted-link:hover {
+    /* ТОЛЬКО при наведении - красная подсветка */
     color: #fff !important;
     background: rgba(100, 0, 0, 0.6) !important;
     border-bottom: 2px solid #f00 !important;
@@ -324,19 +326,20 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
     transform: translateY(-2px);
 }
 
-/* Иконка замка */
+/* Иконка замка - тоже серая в обычном состоянии */
 .lock-icon {
     margin-left: 8px;
     font-size: 0.8rem;
+    color: var(--color-text-dim);
+    transition: all 0.3s;
+}
+
+.main-nav a.restricted-link:hover .lock-icon {
+    color: #fff;
     animation: lockPulse 2s infinite;
 }
 
-@keyframes lockPulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-}
-
-/* Индикатор недостаточного уровня */
+/* Индикатор требуемого уровня - появляется только при наведении */
 .access-required-tag {
     position: absolute;
     top: -8px;
@@ -348,11 +351,13 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
     border-radius: 10px;
     font-family: 'Share Tech Mono', monospace;
     z-index: 10;
+    opacity: 0;
     transform: scale(0);
-    transition: transform 0.3s;
+    transition: all 0.3s;
 }
 
 .main-nav li.restricted:hover .access-required-tag {
+    opacity: 1;
     transform: scale(1);
 }
 
