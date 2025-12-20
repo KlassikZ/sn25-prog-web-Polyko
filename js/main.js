@@ -112,13 +112,19 @@ function handleRestrictedClick(e) {
     const page = link.getAttribute('data-original-href');
     const userLevel = auth.getUserLevel();
     
+    // УБИРАЕМ проверку на главную страницу:
+    // const currentPage = window.location.pathname.split('/').pop();
+    // const isOnIndexPage = currentPage === 'index.html' || currentPage === '';
+    // if (!isOnIndexPage) {
+    //     return;
+    // }
+    
     // Определяем требуемый уровень для этой страницы
     const requiredLevel = getRequiredLevelForPage(page);
     
-    // Показываем модальное окно
+    // Показываем модальное окно ВСЕГДА, независимо от текущей страницы
     showAccessDeniedModal(userLevel, requiredLevel, page);
 }
-
 function getRequiredLevelForPage(page) {
     const pageAccess = {
         1: ['index.html', 'building.html'],
