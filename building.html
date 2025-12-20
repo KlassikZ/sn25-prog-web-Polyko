@@ -60,7 +60,7 @@
                             <h2>ЭТАЖ 3: ЗОНА КОНТЕЙНЕМЕНТА</h2>
                             <div class="floor-access">
                                 <span class="access-label">ТРЕБУЕМЫЙ ДОПУСК:</span>
-                                <span class="access-value level-4">LEVEL-4 + КОСТЮМ</span>
+                                <span class="access-value level-4">LEVEL-4</span>
                             </div>
                         </div>
                         
@@ -123,7 +123,7 @@
                     
                     <!-- Центральная колонка: кнопки переключения этажей -->
                     <div class="floor-buttons">
-                        <label for="floor3" class="floor-button active" data-floor="3">
+                        <label for="floor3" class="floor-button" data-floor="3">
                             <span class="button-circle">3</span>
                             <span class="button-label">Зона Контейнемента</span>
                         </label>
@@ -133,7 +133,7 @@
                             <span class="button-label">Исследовательский</span>
                         </label>
                         
-                        <label for="floor1" class="floor-button" data-floor="1">
+                        <label for="floor1" class="floor-button active" data-floor="1">
                             <span class="button-circle">1</span>
                             <span class="button-label">Административный</span>
                         </label>
@@ -383,68 +383,58 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        // Установка текущей даты
+            // Установка текущей даты
             const now = new Date();
             document.getElementById('currentDate').textContent = 
-            now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0,5);
-        
-        // Логика переключения этажей
-            const floorButtons = document.querySelectorAll('.floor-button');
-            const floorContents = document.querySelectorAll('.floor-content');
-            const floorRadios = document.querySelectorAll('input[name="floor"]');
-        
-        // Начальная активация (этаж 3)
-            activateFloor(3);
-        
-        // Обработчики для кнопок
-            floorButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const floorNumber = this.dataset.floor;
-                    activateFloor(floorNumber);
-            });
-        });
-        
-        // Обработчики для радиокнопок (на всякий случай)
-            floorRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const floorNumber = this.id.replace('floor', '');
-                    activateFloor(floorNumber);
-            });
-        });
-        
+                now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0,5);
+            
+            // Находим ВСЕ кнопки этажей (должно быть 9 кнопок - по 3 на каждый этаж)
+            const allFloorButtons = document.querySelectorAll('.floor-button');
+            const allFloorContents = document.querySelectorAll('.floor-content');
+            
+            console.log('Найдено кнопок:', allFloorButtons.length);
+            console.log('Найдено контентов:', allFloorContents.length);
+            
+            // Функция активации этажа
             function activateFloor(floorNumber) {
-                console.log('Активация этажа:', floorNumber);
-            
-            // 1. Обновляем радиокнопки
-                floorRadios.forEach(radio => {
-                    radio.checked = (radio.id === `floor${floorNumber}`);
-            });
-            
-            // 2. Снимаем активный класс со всех кнопок
-                floorButtons.forEach(btn => {
+                console.log('Активируем этаж:', floorNumber);
+                
+                // 1. Убираем active у ВСЕХ кнопок на странице
+                allFloorButtons.forEach(btn => {
                     btn.classList.remove('active');
-            });
-            
-            // 3. Добавляем активный класс на выбранную кнопку
-                const activeButton = document.querySelector(`.floor-button[data-floor="${floorNumber}"]`);
-                if (activeButton) {
-                    activeButton.classList.add('active');
-            }
-            
-            // 4. Скрываем все содержимое этажей
-                floorContents.forEach(content => {
+                });
+                
+                // 2. Скрываем ВСЕ контенты этажей
+                allFloorContents.forEach(content => {
                     content.classList.remove('active');
                     content.style.display = 'none';
+                });
+                
+                // 3. Активируем кнопки с data-floor="X"
+                const floorButtons = document.querySelectorAll(`.floor-button[data-floor="${floorNumber}"]`);
+                floorButtons.forEach(btn => {
+                    btn.classList.add('active');
+                });
+                
+                // 4. Показываем контент этажа
+                const floorContent = document.querySelector(`.floor-content[data-floor="${floorNumber}"]`);
+                if (floorContent) {
+                    floorContent.classList.add('active');
+                    floorContent.style.display = 'block';
+                }
+            }
+            
+            // Вешаем обработчики на ВСЕ кнопки
+            allFloorButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const floorNumber = this.getAttribute('data-floor');
+                    activateFloor(floorNumber);
+                });
             });
             
-            // 5. Показываем выбранный этаж
-                const activeContent = document.querySelector(`.floor-content[data-floor="${floorNumber}"]`);
-                if (activeContent) {
-                    activeContent.classList.add('active');
-                    activeContent.style.display = 'block';
-            }
-        }
-    });
+            // Инициализация
+            activateFloor('3');
+        });
     </script>
 </body>
 </html>
