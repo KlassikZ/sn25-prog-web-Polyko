@@ -195,79 +195,115 @@ body {
 }
 
 
-/* Контейнер для фото */
+.staff-photo-container {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение */
+    align-items: center; /* Центрирование по горизонтали */
+    margin-right: 20px;
+    min-width: 180px;
+    position: relative;
+}
+
+/* Основной контейнер для фото (без изменений) */
 .staff-photo {
     width: 180px;
-    /* ЗАМЕНИТЬ aspect-ratio: 3/4 на: */
-    height: auto; /* Гибкая высота */
-    min-width: 180px;
-    max-height: 240px; /* Максимальная высота чуть больше */
+    height: 200px;
     background: rgba(10, 20, 30, 0.7);
-    padding: 10px; /* Отступы внутри */
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Убираем position: relative если был */
 }
 
 .staff-photo img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Ключевое изменение! */
-}
-.staff-card:hover, .specimen-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--glow-shadow);
+    object-fit: contain;
+    display: block;
 }
 
-.staff-card.danger, .specimen-card.danger {
-    border-color: var(--color-danger);
-    box-shadow: var(--danger-glow);
-}
-
-/* ===== СТИЛИ ДЛЯ СТАТУСА "НА МЕСТЕ" ===== */
+/* ===== СТАТУС НАД ФОТОГРАФИЕЙ ===== */
 
 .status-badge {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 6px 12px;
+    padding: 6px 15px;
     border-radius: 4px;
     font-size: 0.85rem;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-bottom: 10px; /* Отступ между статусом и фото */
+    width: 100%; /* На всю ширину контейнера */
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
 }
 
+/* Стиль для "На месте" */
 .status-badge.present {
-    background: rgba(0, 40, 0, 0.8);
+    background: rgba(0, 40, 0, 0.9);
     color: #80ff80;
     border: 1px solid #00aa00;
     border-left: 4px solid #00ff00;
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.3),
+        inset 0 0 5px rgba(0, 255, 0, 0.2);
 }
 
+/* Стиль для "Отсутствует" */
 .status-badge.absent {
-    background: rgba(40, 0, 0, 0.8);
+    background: rgba(40, 0, 0, 0.9);
     color: #ff9999;
     border: 1px solid #aa0000;
     border-left: 4px solid #ff0000;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+    box-shadow: 
+        0 0 10px rgba(255, 0, 0, 0.3),
+        inset 0 0 5px rgba(255, 0, 0, 0.2);
 }
 
-.status-dot {
+/* Зеленая точка для "На месте" */
+.status-badge.present .status-dot {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-}
-
-.status-badge.present .status-dot {
     background: #00ff00;
+    border-radius: 50%;
     box-shadow: 0 0 6px #00ff00;
     animation: pulse-green 2s infinite;
+    display: inline-block;
 }
 
+/* Красная точка для "Отсутствует" */
 .status-badge.absent .status-dot {
+    width: 8px;
+    height: 8px;
     background: #ff0000;
+    border-radius: 50%;
     animation: pulse-red 3s infinite;
+    display: inline-block;
+}
+
+/* Текст статуса */
+.status-text {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Анимации (уже должны быть) */
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 6px #00ff00; opacity: 1; }
+    50% { box-shadow: 0 0 12px #00ff00; opacity: 0.7; }
+}
+
+@keyframes pulse-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 /* ===== ВКЛАДКИ ЭТАЖЕЙ ===== */
 .floor-selector {
@@ -700,10 +736,21 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
         gap: 10px;
     }
 
+    .staff-photo-container {
+        margin-right: 0;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    
     .staff-photo {
-        width: 150px;  /* Было 200px */
-        height: 180px; /* Было 250px */
-        min-width: 150px;
+        width: 150px;
+        height: 170px;
+    }
+    
+    .status-badge {
+        width: 150px; /* Совпадает с шириной фото */
+        padding: 5px 10px;
+        font-size: 0.75rem;
     }
 
     .main-nav ul {
