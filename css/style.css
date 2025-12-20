@@ -224,6 +224,105 @@ body {
     box-shadow: var(--danger-glow);
 }
 
+/* ===== СТИЛИ ДЛЯ СТАТУСА "НА МЕСТЕ" ===== */
+
+.photo-caption.present {
+    background: rgba(0, 40, 0, 0.8); /* Темно-зеленый фон */
+    color: #80ff80; /* Светло-зеленый текст */
+    border: 1px solid #00aa00;
+    border-left: 4px solid #00ff00; /* Ярко-зеленая левая граница */
+    border-radius: 4px; /* Скругленные углы */
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+}
+
+/* Зеленая точка-индикатор онлайн */
+.photo-caption.present::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00ff00;
+    animation: pulse-green 2s infinite;
+    display: inline-block;
+}
+
+/* Стиль для статуса "Отсутствует" */
+.photo-caption.absent {
+    background: rgba(40, 0, 0, 0.8); /* Темно-красный фон */
+    color: #ff9999; /* Светло-красный текст */
+    border: 1px solid #aa0000;
+    border-left: 4px solid #ff0000; /* Ярко-красная левая граница */
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+/* Красная точка для отсутствующих */
+.photo-caption.absent::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #ff0000;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-red 3s infinite;
+}
+
+/* Анимация пульсации для зеленой точки */
+@keyframes pulse-green {
+    0%, 100% {
+        box-shadow: 0 0 6px #00ff00;
+        opacity: 1;
+    }
+    50% {
+        box-shadow: 0 0 12px #00ff00;
+        opacity: 0.7;
+    }
+}
+
+/* Анимация пульсации для красной точки */
+@keyframes pulse-red {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Убираем старые стили, если они были */
+.photo-overlay {
+    bottom: 10px;
+    left: 10px;
+    right: auto; /* Отменяем растягивание на всю ширину */
+    width: auto; /* Автоматическая ширина по содержимому */
+    background: none; /* Убираем старый фон */
+    padding: 0;
+}
+
+/* Если нужно, чтобы оверлей был слева внизу */
+.photo-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
 /* ===== ВКЛАДКИ ЭТАЖЕЙ ===== */
 .floor-selector {
     display: flex;
