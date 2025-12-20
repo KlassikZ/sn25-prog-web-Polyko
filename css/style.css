@@ -196,20 +196,18 @@ body {
 
 
 /* Контейнер для фото */
+.staff-photo {
+    width: 180px;
+    /* height: auto; или удалить высоту */
+    aspect-ratio: 3/4; /* Пропорции 3:4 (ширина:высота) */
+    min-width: 180px;
+}
+
 .staff-photo img {
     width: 100%;
     height: 100%;
-    /* Вместо cover используйте contain */
-    object-fit: contain; /* ← ИЗМЕНИТЬ ЭТУ СТРОЧКУ */
-    display: block;
-    background: rgba(0, 0, 0, 0.3); /* Фон для пустых областей */
+    object-fit: cover; /* Теперь не будет обрезки, т.к. пропорции совпадают */
 }
-
-/* Или добавьте отдельный класс для фона */
-.staff-photo {
-    background: rgba(10, 20, 30, 0.5); /* Цвет фона контейнера */
-}
-
 .staff-card:hover, .specimen-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--glow-shadow);
