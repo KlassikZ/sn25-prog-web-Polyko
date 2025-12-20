@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИБКИ - Персонал проекта</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Та же шапка, что на главной, но с другим активным пунктом -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <h1 class="logo">ИБКИ</h1>
+                <p class="logo-subtitle">Институт Био-Ксенологических Исследований</p>
+                <div class="access-level">
+                    <span class="access-badge">ДОСТУП: LEVEL-2</span>
+                    <div class="access-light"></div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">ГЛАВНЫЙ АРХИВ</a></li>
+                    <li><a href="staff.html" class="nav-active">ПЕРСОНАЛ</a></li>
+                    <li><a href="blinks.html">ОБРАЗЦЫ ("БЛИКИ")</a></li>
+                    <li><a href="building.html">СТРУКТУРА КОМПЛЕКСА</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="access-notice">
+            <div class="notice-header">
+                <h2>ПЕРСОНАЛ ПРОЕКТА "ЛЮМИ-КОГНИТЭ"</h2>
+                <p class="access-required">ТРЕБУЕМЫЙ ДОПУСК: <span class="level-2">LEVEL-2</span></p>
+            </div>
+            <p class="notice-text">Список ключевого персонала, имеющего прямой доступ к объектам исследования. Биометрические данные сверяются при каждом входе в зоны повышенной безопасности.</p>
+        </section>
+
+        <div class="staff-container">
+            <!-- Карточка 1: Главный генетик -->
+            <article class="staff-card">
+                <div class="staff-card-header">
+                    <div class="staff-id">
+                        <span class="id-label">ИДЕНТИФИКАТОР:</span>
+                        <span class="id-value">ГЕН-01-АЛЬФА</span>
+                    </div>
+                    <div class="staff-clearance">
+                        <span class="clearance-badge">ДОПУСК: LEVEL-4</span>
+                    </div>
+                </div>
+                
+                <div class="staff-card-body">
+                    <div class="staff-photo">
+                        <img src="images/staff/geneticist.jpg" alt="Фото главного генетика" loading="lazy">
+                        <div class="photo-overlay">
+                            <span class="photo-caption">Сканирование сетчатки активно</span>
+                        </div>
+                    </div>
+                    
+                    <div class="staff-info">
+                        <h3 class="staff-name">Доктор Александр Волков</h3>
+                        <p class="staff-position">ГЛАВНЫЙ ГЕНЕТИК, РУКОВОДИТЕЛЬ ПРОЕКТА</p>
+                        
+                        <div class="staff-stats">
+                            <div class="stat">
+                                <span class="stat-label">В проекте:</span>
+                                <span class="stat-value">3 года 4 месяца</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Последний доступ:</span>
+                                <span class="stat-value">Сегодня, 08:30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="staff-bio">
+                            <h4>РЕГАЛИИ И ДОСТИЖЕНИЯ:</h4>
+                            <ul>
+                                <li>Доктор биологических наук, лауреат премии Правительства РФ</li>
+                                <li>Автор 47 публикаций в области ксеногенетики (под грифом)</li>
+                                <li>Руководил проектом "Химера" (2018-2021)</li>
+                                <li>Разработчик протокола изоляции телепатических сигналов</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="staff-note">
+                            <h4>ЛИЧНАЯ ЗАМЕТКА ИЗ ДОСЬЕ:</h4>
+                            <p class="note-content">"Волков настаивает на ускорении тестов. Считает, что мы 'слишком осторожничаем с потенциалом'. Вчера запросил разрешение на эксперименты с прямой нейронной связью. Отклонено комиссией по этике."</p>
+                            <p class="note-author">— Из отчета отдела безопасности</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 2: Ветеринар-биохимик (шаблон для остальных) -->
+            <article class="staff-card">
+                <div class="staff-card-header">
+                    <div class="staff-id">
+                        <span class="id-label">ИДЕНТИФИКАТОР:</span>
+                        <span class="id-value">БИО-02-БРАВО</span>
+                    </div>
+                    <div class="staff-clearance">
+                        <span class="clearance-badge">ДОПУСК: LEVEL-3</span>
+                    </div>
+                </div>
+                
+                <div class="staff-card-body">
+                    <!-- Аналогичная структура для каждого сотрудника -->
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <!-- Тот же подвал, что на главной -->
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
