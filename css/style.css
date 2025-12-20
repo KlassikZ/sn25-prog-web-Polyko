@@ -198,15 +198,23 @@ body {
 /* Контейнер для фото */
 .staff-photo {
     width: 180px;
-    /* height: auto; или удалить высоту */
-    aspect-ratio: 3/4; /* Пропорции 3:4 (ширина:высота) */
+    /* УБРАТЬ aspect-ratio: 3/4; */
     min-width: 180px;
+    max-height: 220px; /* Ограничиваем максимальную высоту */
+    background: rgba(10, 20, 30, 0.7); /* Фон на случай пустого места */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid var(--color-secondary);
 }
 
 .staff-photo img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Теперь не будет обрезки, т.к. пропорции совпадают */
+    height: auto; /* Автоматическая высота */
+    max-height: 100%; /* Не превышает контейнер */
+    object-fit: contain; /* Показывает всё изображение без обрезки */
 }
 .staff-card:hover, .specimen-card:hover {
     transform: translateY(-5px);
