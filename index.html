@@ -1,4 +1,12 @@
+<script>
+    // Перенаправляем на login.html если пользователь не авторизован
+    if (!sessionStorage.getItem('ibki_user')) {
+        window.location.href = 'login.html';
+    }
+</script>
+
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
