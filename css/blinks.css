@@ -186,7 +186,7 @@
 .expand-icon {
     position: absolute;
     right: 20px;
-    top: 20px;
+    bottom: 10px;
     color: var(--color-accent);
     font-size: 1.2rem;
     transition: transform 0.3s;
