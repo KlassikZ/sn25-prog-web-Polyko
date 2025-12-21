@@ -87,22 +87,7 @@ function updateUIForUserLevel(level) {
     // Добавляем кнопку выхода
     addLogoutButton();
     
-    // Вешаем обработчики на заблокированные вкладки
-    setupRestrictedLinks(level);
-}
 
-// Добавьте эту функцию в js/main.js
-function setupRestrictedLinks(level) {
-    const restrictedLinks = document.querySelectorAll('.restricted-link');
-    
-    restrictedLinks.forEach(link => {
-        // Удаляем старые обработчики
-        link.removeEventListener('click', handleRestrictedClick);
-        
-        // Добавляем новый обработчик
-        link.addEventListener('click', handleRestrictedClick);
-    });
-}
 
 function handleRestrictedClick(e) {
     e.preventDefault();
