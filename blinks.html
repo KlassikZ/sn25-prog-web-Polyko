@@ -252,10 +252,6 @@
                     </div>
                 </div>
                 
-                <div class="specimen-footer">
-                    <button class="btn-log" data-specimen="L109KB">ЗАПИСАТЬ НАБЛЮДЕНИЕ</button>
-                    <button class="btn-details" data-specimen="L109KB">ПОЛНОЕ ДОСЬЕ (УРОВЕНЬ 4)</button>
-                </div>
             </article>
             <button class="btn-close-detail">▲ СВЕРНУТЬ</button>
         </div>
@@ -343,10 +339,6 @@
                     </div>
                 </div>
                 
-                <div class="specimen-footer">
-                    <button class="btn-log" data-specimen="D328JT">ЗАПИСАТЬ НАБЛЮДЕНИЕ</button>
-                    <button class="btn-details" data-specimen="D328JT">ПОЛНОЕ ДОСЬЕ (УРОВЕНЬ 4)</button>
-                </div>
             </article>
             <button class="btn-close-detail">▲ СВЕРНУТЬ</button>
         </div>
@@ -443,10 +435,6 @@
                     </div>
                 </div>
                 
-                <div class="specimen-footer">
-                    <button class="btn-log" data-specimen="U080NC" disabled>НАХОДИТСЯ В КРИОСТАЗЕ</button>
-                    <button class="btn-details" data-specimen="U080NC">ПРОТОКОЛ РАЗМОРОЗКИ (УРОВЕНЬ 4)</button>
-                </div>
             </article>
             <button class="btn-close-detail">▲ СВЕРНУТЬ</button>
         </div>
@@ -555,19 +543,10 @@
                     </div>
                 </div>
                 
-                <div class="specimen-footer">
-                    <button class="btn-log" data-specimen="J962QE">ЗАПИСАТЬ НАБЛЮДЕНИЕ</button>
-                    <button class="btn-details" data-specimen="J962QE">ПРОТОКОЛЫ КОММУНИКАЦИИ (УРОВЕНЬ 4)</button>
-                </div>
             </article>
             <button class="btn-close-detail">▲ СВЕРНУТЬ</button>
         </div>
-      
-        <!-- Кнопка для разворачивания/сворачивания всех карточек -->
-        <div class="controls">
-            <button id="expandAllBtn" class="btn-details">РАЗВЕРНУТЬ ВСЕ</button>
-            <button id="collapseAllBtn" class="btn-details">СВЕРНУТЬ ВСЕ</button>
-        </div>
+
     </main>
 
     <footer class="main-footer">
@@ -666,79 +645,6 @@
                         document.getElementById('specimensList').scrollIntoView({ 
                             behavior: 'smooth' 
                         });
-                    }
-                }
-            });
-            
-            // Развернуть все
-            const expandAllBtn = document.getElementById('expandAllBtn');
-            if (expandAllBtn) {
-                expandAllBtn.addEventListener('click', function() {
-                    const details = document.querySelectorAll('.specimen-detail');
-                    const listItems = document.querySelectorAll('.specimen-list-item');
-                    
-                    details.forEach(detail => {
-                        detail.classList.add('active');
-                    });
-                    
-                    listItems.forEach(item => {
-                        item.classList.add('active');
-                    });
-                    
-                    currentOpenDetail = 'all';
-                    
-                    // Прокрутка к первой карточке
-                    const firstDetail = document.querySelector('.specimen-detail');
-                    if (firstDetail) {
-                        firstDetail.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
-            
-            // Свернуть все
-            const collapseAllBtn = document.getElementById('collapseAllBtn');
-            if (collapseAllBtn) {
-                collapseAllBtn.addEventListener('click', function() {
-                    hideAllDetails();
-                    
-                    // Прокрутка к верху списка
-                    document.getElementById('specimensList').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                });
-            }
-            
-            // Обработка кнопок внутри карточек
-            document.addEventListener('click', function(e) {
-                // Кнопка "Записать наблюдение"
-                if (e.target.closest('.btn-log')) {
-                    const specimen = e.target.closest('.btn-log').getAttribute('data-specimen');
-                    alert(`Начинаю запись наблюдения для образца ${specimen}...\n\nОткройте консоль разработчика (F12) для более подробной информации.`);
-                    console.log(`[ИБКИ] Запись наблюдения для образца ${specimen} начата в ${new Date().toLocaleTimeString()}`);
-                }
-                
-                // Кнопка "Полное досье"
-                if (e.target.closest('.btn-details')) {
-                    const specimen = e.target.closest('.btn-details').getAttribute('data-specimen');
-                    
-                    // Проверяем уровень доступа пользователя
-                    const user = JSON.parse(sessionStorage.getItem('ibki_user'));
-                    if (user && user.level >= 4) {
-                        alert(`Доступ к полному досье образца ${specimen} разрешен.\n\nЗагружаю секретные данные...`);
-                        console.log(`[ИБКИ] Загружено полное досье для образца ${specimen}`);
-                    } else {
-                        // Показываем модальное окно отказа в доступе
-                        const modal = document.getElementById('accessDeniedModal');
-                        const currentLevelEl = document.getElementById('currentAccessLevel');
-                        const requiredLevelEl = document.getElementById('requiredAccessLevel');
-                        
-                        if (modal && currentLevelEl && requiredLevelEl) {
-                            currentLevelEl.textContent = user ? `LEVEL-${user.level}` : 'LEVEL-0';
-                            requiredLevelEl.textContent = 'LEVEL-4';
-                            modal.style.display = 'block';
-                        } else {
-                            alert('⛔ ДОСТУП ЗАПРЕЩЁН\n\nТребуется уровень доступа: LEVEL-4\nВаш уровень доступа недостаточен для просмотра полного досье.');
-                        }
                     }
                 }
             });

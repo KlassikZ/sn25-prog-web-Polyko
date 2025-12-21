@@ -547,53 +547,6 @@
     }
 }
 
-/* ===== УПРАВЛЕНИЕ КАРТОЧКАМИ ===== */
-
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 40px 0 20px;
-    flex-wrap: wrap;
-}
-
-#expandAllBtn, #collapseAllBtn {
-    min-width: 180px;
-    padding: 12px 25px;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: none;
-}
-
-#expandAllBtn {
-    background: linear-gradient(to right, var(--color-secondary), #005555);
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-}
-
-#expandAllBtn:hover {
-    background: linear-gradient(to right, #005555, var(--color-secondary));
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
-    transform: translateY(-2px);
-}
-
-#collapseAllBtn {
-    background: linear-gradient(to right, #3a0000, #550000);
-    color: #ff9999;
-    border: 1px solid #ff6666;
-}
-
-#collapseAllBtn:hover {
-    background: linear-gradient(to right, #550000, #3a0000);
-    box-shadow: 0 0 15px rgba(255, 102, 102, 0.3);
-    transform: translateY(-2px);
-}
-
 /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ КАРТОЧЕК ===== */
 
 /* Цветовые темы для разных уровней угрозы */
@@ -664,14 +617,7 @@
     color: #ffaa00;
 }
 
-/* Отключенные кнопки */
-.specimen-footer button:disabled {
-    background: linear-gradient(to right, #333, #222);
-    color: #666;
-    border-color: #444;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
+
 
 /* Улучшенные анимации для сканирования */
 .scan-line {
@@ -813,67 +759,6 @@
     max-height: 5000px; /* Достаточно большое значение для анимации */
 }
 
-/* Улучшение стилей кнопок внутри карточек */
-.specimen-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-top: 1px solid var(--color-secondary);
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.specimen-footer button {
-    flex: 1;
-    min-width: 200px;
-    padding: 12px 20px;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.btn-log {
-    background: linear-gradient(to right, var(--color-secondary), #005555);
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-}
-
-.btn-log:hover {
-    background: linear-gradient(to right, #005555, var(--color-secondary));
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
-    transform: translateY(-2px);
-}
-
-.btn-details {
-    background: linear-gradient(to right, #3a003a, #550055);
-    color: #ff80ff;
-    border: 1px solid #ff80ff;
-}
-
-.btn-details:hover {
-    background: linear-gradient(to right, #550055, #3a003a);
-    box-shadow: 0 0 15px rgba(255, 128, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-/* Стили для отключенной кнопки */
-.specimen-footer button:disabled {
-    background: linear-gradient(to right, #333, #222);
-    color: #666;
-    border: 1px solid #444;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-.specimen-footer button:disabled:hover {
-    transform: none;
-    box-shadow: none;
-}
-
 /* Улучшение адаптивности */
 @media (max-width: 768px) {
     .specimen-footer {
@@ -888,4 +773,28 @@
     .specimen-detail.active {
         max-height: 10000px; /* Еще больше для мобильных */
     }
+}
+/* ===== СТИЛИ ДЛЯ КНОПКИ "СВЕРНУТЬ" ===== */
+
+.btn-close-detail {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 25px;
+    background: linear-gradient(to right, #003a3a, #002222);
+    color: var(--color-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-close-detail:hover {
+    background: linear-gradient(to right, #002222, #003a3a);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
+    transform: translateY(-2px);
 }
