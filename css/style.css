@@ -729,28 +729,6 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
     animation: lockPulse 2s infinite;
 }
 
-/* Индикатор требуемого уровня - появляется только при наведении */
-.access-required-tag {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #f00;
-    color: white;
-    font-size: 0.6rem;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-family: 'Share Tech Mono', monospace;
-    z-index: 10;
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.3s;
-}
-
-.main-nav li.restricted:hover .access-required-tag {
-    opacity: 1;
-    transform: scale(1);
-}
-
 /* ===== МОДАЛЬНОЕ ОКНО ===== */
 .modal-overlay {
     display: none;

@@ -199,13 +199,7 @@ function updateUIForUserLevel(level) {
                 link.appendChild(lockIcon);
             }
             
-            // Добавляем индикатор требуемого уровня
-            if (!item.querySelector('.access-required-tag')) {
-                const requiredTag = document.createElement('span');
-                requiredTag.className = 'access-required-tag';
-                requiredTag.textContent = `LEVEL-${getRequiredLevelForPage(page)}`;
-                item.appendChild(requiredTag);
-            }
+
         } else {
             item.classList.remove('restricted');
             link.classList.remove('restricted-link');
@@ -219,9 +213,6 @@ function updateUIForUserLevel(level) {
             const lockIcon = link.querySelector('.lock-icon');
             if (lockIcon) lockIcon.remove();
             
-            // Удаляем индикатор требуемого уровня
-            const requiredTag = item.querySelector('.access-required-tag');
-            if (requiredTag) requiredTag.remove();
         }
     });
     
