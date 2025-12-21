@@ -99,8 +99,20 @@
                     </div>
                 </div>
             </article>            
+
             <!-- Карточка 2: test -->
-                            <div class="staff-card-body">
+            <article class="staff-card">
+                <div class="staff-card-header">
+                    <div class="staff-id">
+                        <span class="id-label">ИДЕНТИФИКАТОР:</span>
+                        <span class="id-value">СЛОВ-02-БЕТА</span>
+                    </div>
+                    <div class="staff-clearance">
+                        <span class="clearance-badge level-3">ДОПУСК: LEVEL-3</span>
+                    </div>
+                </div>
+                
+                <div class="staff-card-body">
                     <!-- Фото и статус в одном блоке -->
                     <div class="staff-photo-container">
                         <div class="staff-photo">
@@ -116,7 +128,7 @@
                     <!-- Информация с четким разделением -->
                     <div class="staff-info">
                         <h3 class="staff-name">ДАРЬЯ СЛОВЕЧКИНА</h3>
-                        <p class="staff-position">ГЛАВНЫЙ ГЕНЕТИК, РУКОВОДИТЕЛЬ ПРОЕКТА</p>
+                        <p class="staff-position">СПЕЦИАЛИСТ ПО ТЕЛЕПАТИЧЕСКИМ КОНТАКТАМ</p>
                         
                         <div class="staff-stats">
                             <div class="stat">
@@ -125,7 +137,7 @@
                             </div>
                             <div class="stat">
                                 <span class="stat-label">Последний доступ:</span>
-                                <span class="stat-value">Сегодня, 08:30</span>
+                                <span class="stat-value">Вчера, 17:45</span>
                             </div>
                         </div>
                         
@@ -135,18 +147,18 @@
                                 <li>Чемпион по самому милому сну</li>
                                 <li>Автор 47 публикаций в области милых записочек</li>
                                 <li>Знает за что тебя посадят</li>
+                                <li>Эксперт по телепатическим связям с образцами</li>
                             </ul>
                         </div>
                         
                         <div class="staff-note">
                             <h4>ЛИЧНАЯ ЗАМЕТКА ИЗ ДОСЬЕ:</h4>
-                            <p class="note-content">"Паспорт украл Егор, остались только лапы и хвост"</p>
+                            <p class="note-content">"Паспорт украл Егор, остались только лапы и хвост. Проявляет необычайные способности к телепатическому контакту с образцами. Образец L109KB проявляет к ней особый интерес."</p>
                             <p class="note-author">— Из отчета отдела безопасности</p>
                         </div>
                     </div>
                 </div>
-            </article> 
-                
+            </article>                
 
             
         </div>
@@ -170,70 +182,65 @@
     </footer>
 
     <script src="js/main.js"></script>
+    // ТОЛЬКО ЭТО ОСТАВЬТЕ В КАЖДОМ HTML-ФАЙЛЕ:
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Установка текущей даты
-            const now = new Date();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Установка текущей даты
+        const now = new Date();
+        if (document.getElementById('currentDate')) {
             document.getElementById('currentDate').textContent = 
                 now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0,5);
-            
-            // Проверяем авторизацию
-            const user = JSON.parse(sessionStorage.getItem('ibki_user'));
-            
-            if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            // Обновляем бейдж доступа
-            if (document.querySelector('.access-badge')) {
-                document.querySelector('.access-badge').textContent = `ДОСТУП: LEVEL-${user.level}`;
-            }
-            
-            // Проверяем уровень доступа для страницы
-            const currentPage = 'staff.html';
-            const pageAccess = {
-                1: ['index.html', 'building.html'],
-                2: ['index.html', 'building.html', 'staff.html'],
-                3: ['index.html', 'building.html', 'staff.html', 'blinks.html'],
-                4: ['index.html', 'building.html', 'staff.html', 'blinks.html']
-            };
-            
-            if (!pageAccess[user.level] || !pageAccess[user.level].includes(currentPage)) {
-                // Показываем сообщение о недостатке доступа
-                document.body.innerHTML = `
-                    <div style="
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh;
-                        background: #0a0a16;
-                        color: #ff0040;
-                        font-family: 'Share Tech Mono', monospace;
-                        text-align: center;
-                        padding: 20px;
-                    ">
-                        <div>
-                            <h1 style="font-size: 3rem; margin-bottom: 20px;">⛔ ДОСТУП ЗАПРЕЩЁН</h1>
-                            <p style="font-size: 1.2rem; margin-bottom: 30px;">
-                                Ваш уровень доступа (LEVEL-${user.level}) недостаточен для просмотра этой страницы.
-                            </p>
-                            <button onclick="window.location.href='index.html'" style="
-                                background: #ff0040;
-                                color: white;
-                                border: none;
-                                padding: 15px 30px;
-                                font-size: 1rem;
-                                cursor: pointer;
-                                font-family: 'Orbitron', sans-serif;
-                            ">
-                                ВЕРНУТЬСЯ НА ГЛАВНУЮ
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-        });
+        }
+        
+        // ТОЛЬКО проверка авторизации
+        const user = JSON.parse(sessionStorage.getItem('ibki_user'));
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+    });
     </script>
+<!-- Модальное окно для сообщения о недостаточном доступе -->
+<div id="accessDeniedModal" class="modal-overlay">
+    <div class="modal-content access-denied">
+        <div class="modal-header">
+            <h2 class="modal-title">⛔ ДОСТУП ЗАПРЕЩЁН</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="access-warning-icon">
+                <div class="warning-pulse"></div>
+                <span class="warning-text">⚠️</span>
+            </div>
+            
+            <div class="access-info">
+                <h3>НЕДОСТАТОЧНО ПРАВ ДОСТУПА</h3>
+                <p class="current-access">
+                    Ваш текущий уровень: <span id="currentAccessLevel" class="level-badge">LEVEL-?</span>
+                </p>
+                <p class="required-access">
+                    Требуется уровень: <span id="requiredAccessLevel" class="level-badge required">LEVEL-?</span>
+                </p>
+                
+                <div class="access-details">
+                    <p>Для доступа к этому разделу необходимы дополнительные полномочия.</p>
+                    
+                    <div class="access-hint">
+                        <h4>Как получить доступ:</h4>
+                        <ul>
+                            <li>Найдите учетные данные более высокого уровня</li>
+                            <li>Обратитесь к руководителю проекта</li>
+                            <li>Проверьте секретные документы в других разделах</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="closeModalBtn" class="modal-btn">ПОНЯТНО</button>
+            <button id="tryHackBtn" class="modal-btn secondary">ПОПРОБОВАТЬ ВЗЛОМАТЬ</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

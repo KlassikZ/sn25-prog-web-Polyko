@@ -161,24 +161,25 @@
 
     <!-- Скрипты -->
     <script src="js/main.js"></script>
+    // ТОЛЬКО ЭТО ОСТАВЬТЕ В КАЖДОМ HTML-ФАЙЛЕ:
     <script>
-        // Инициализация главной страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Установка текущей даты
-            const now = new Date();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Установка текущей даты
+        const now = new Date();
+        if (document.getElementById('currentDate')) {
             document.getElementById('currentDate').textContent = 
                 now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0,5);
-            
-            // Эффект мигающего индикатора доступа
-            const accessLight = document.querySelector('.access-light');
-            if(accessLight) {
-                setInterval(() => {
-                    accessLight.classList.toggle('active');
-                }, 2000);
-            }
-        });
+        }
+        
+        // ТОЛЬКО проверка авторизации
+        const user = JSON.parse(sessionStorage.getItem('ibki_user'));
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+    });
     </script>
-    <!-- Модальное окно для сообщения о недостаточном доступе -->
+<!-- Модальное окно для сообщения о недостаточном доступе -->
 <div id="accessDeniedModal" class="modal-overlay">
     <div class="modal-content access-denied">
         <div class="modal-header">

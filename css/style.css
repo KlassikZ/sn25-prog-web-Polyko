@@ -186,22 +186,27 @@ body {
 
 /* ===== ОБНОВЛЕННЫЕ СТИЛИ КАРТОЧЕК ПЕРСОНАЛА ===== */
 
-/* Контейнер карточки */
+/* Контейнер для всех карточек */
+.staff-container {
+    margin-top: 30px;
+}
+
+/* Основная карточка */
 .staff-card {
-    display: flex;
-    flex-direction: column;
-    background: rgba(10, 20, 30, 0.9);
-    border: 1px solid var(--color-secondary);
-    border-radius: 8px;
+    background: rgba(10, 20, 30, 0.95);
+    border: 2px solid var(--color-secondary);
+    border-radius: 10px;
+    margin-bottom: 40px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    margin-bottom: 30px;
-    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 .staff-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 234, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 255, 234, 0.2);
+    border-color: var(--color-accent);
 }
 
 /* Шапка карточки */
@@ -209,50 +214,78 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(0, 20, 40, 0.8);
     border-bottom: 2px solid var(--color-secondary);
 }
 
-.staff-id .id-label {
-    color: var(--color-text-dim);
-    font-size: 0.9rem;
-    margin-right: 10px;
+.staff-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.staff-id .id-value {
+.id-label {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+}
+
+.id-value {
     color: var(--color-accent);
     font-family: var(--font-heading);
+    font-size: 1rem;
     letter-spacing: 1px;
 }
+
+/* Бейдж уровня доступа в шапке */
+.clearance-badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.clearance-badge.level-1 { background: rgba(128, 255, 128, 0.2); color: #80ff80; border: 1px solid #80ff80; }
+.clearance-badge.level-2 { background: rgba(0, 255, 234, 0.2); color: #00ffea; border: 1px solid #00ffea; }
+.clearance-badge.level-3 { background: rgba(255, 170, 0, 0.2); color: #ffaa00; border: 1px solid #ffaa00; }
+.clearance-badge.level-4 { background: rgba(255, 102, 102, 0.2); color: #ff6666; border: 1px solid #ff6666; }
 
 /* Тело карточки */
 .staff-card-body {
     display: flex;
+    padding: 25px;
     gap: 30px;
     flex-wrap: wrap;
 }
 
-/* Контейнер фото с обновленным статусом ПОД фото */
+/* Контейнер для фото и статуса */
 .staff-photo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+    min-width: 200px;
 }
 
+/* Фотография */
 .staff-photo {
-    width: 180px;
-    height: 220px;
+    width: 200px;
+    height: 240px;
     background: rgba(5, 15, 25, 0.8);
     border: 2px solid var(--color-secondary);
     border-radius: 8px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 15px;
     position: relative;
+    transition: all 0.3s;
+}
+
+.staff-photo:hover {
+    transform: scale(1.02);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
 }
 
 .staff-photo img {
@@ -266,21 +299,21 @@ body {
     transform: scale(1.05);
 }
 
-/* СТАТУС ПОД ФОТОГРАФИЕЙ */
+/* Статус под фотографией */
 .status-badge {
-    width: 180px; /* Такая же ширина как у фото */
+    width: 200px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 8px;
-    padding: 10px;
-    border-radius: 6px;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 5px;
+    transition: all 0.3s;
 }
 
 .status-badge.present {
@@ -298,9 +331,10 @@ body {
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    animation: pulse 2s infinite;
 }
 
 .status-badge.present .status-dot {
@@ -315,7 +349,17 @@ body {
     animation: pulse-red 2s infinite;
 }
 
-/* Основная информация о сотруднике */
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 10px #00ff00; opacity: 1; }
+    50% { box-shadow: 0 0 15px #00ff00; opacity: 0.8; }
+}
+
+@keyframes pulse-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Основная информация */
 .staff-info {
     flex: 1;
     min-width: 300px;
@@ -351,6 +395,12 @@ body {
     border-radius: 6px;
     border-left: 3px solid var(--color-accent);
     min-width: 180px;
+    transition: all 0.3s;
+}
+
+.stat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 234, 0.2);
 }
 
 .stat-label {
@@ -418,6 +468,12 @@ body {
     border-radius: 8px;
     border: 1px solid rgba(255, 0, 64, 0.3);
     border-left: 4px solid var(--color-danger);
+    transition: all 0.3s;
+}
+
+.staff-note:hover {
+    border-color: rgba(255, 0, 64, 0.5);
+    box-shadow: 0 5px 15px rgba(255, 0, 64, 0.2);
 }
 
 .staff-note h4 {
@@ -445,76 +501,99 @@ body {
     font-style: italic;
 }
 
-/* Адаптивность */
+/* Адаптивность для мобильных */
 @media (max-width: 768px) {
-   .staff-card-body {
-        flex-direction: column;
-    }
-    
-    /* Меняем порядок: сначала информация, потом фото */
     .staff-card-body {
-        display: flex;
         flex-direction: column;
-    }
-    
-    .staff-info {
-        order: 1; /* Информация будет первой */
-        width: 100%;
-        margin-bottom: 30px;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
     }
     
     .staff-photo-container {
-        order: 2; /* Фото и статус будут вторыми */
         width: 100%;
         align-items: center;
-        margin-top: 20px;
     }
     
-    /* Улучшаем внешний вид для мобильных */
+    .staff-photo {
+        width: 180px;
+        height: 220px;
+    }
+    
+    .status-badge {
+        width: 180px;
+    }
+    
+    .staff-info {
+        width: 100%;
+    }
+    
+    .staff-stats {
+        justify-content: center;
+    }
+    
+    .stat {
+        min-width: 150px;
+        text-align: center;
+    }
+    
     .staff-name {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         text-align: center;
     }
     
     .staff-position {
         text-align: center;
         font-size: 1rem;
-        margin-bottom: 20px;
-    }
-    
-    .staff-stats {
-        justify-content: center;
-        gap: 15px;
-    }
-    
-    .stat {
-        min-width: 45%;
-        text-align: center;
-        padding: 10px 15px;
-    }
-    
-    .staff-photo {
-        width: 220px;
-        height: 260px;
-        margin: 0 auto 15px;
-    }
-    
-    .status-badge {
-        width: 220px;
-        margin: 0 auto;
-    }
-    
-    /* Улучшаем читаемость текста */
-    .staff-bio, .staff-note {
-        padding: 15px;
-    }
-    
-    .staff-bio li {
-        padding: 6px 0 6px 20px;
-        font-size: 0.95rem;
     }
 }
 
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .staff-card {
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+    
+    .staff-card-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .staff-card-body {
+        padding: 15px;
+    }
+    
+    .staff-photo {
+        width: 150px;
+        height: 180px;
+    }
+    
+    .status-badge {
+        width: 150px;
+        font-size: 0.75rem;
+        padding: 8px 10px;
+    }
+    
+    .staff-name {
+        font-size: 1.3rem;
+    }
+    
+    .staff-position {
+        font-size: 0.9rem;
+    }
+    
+    .staff-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stat {
+        min-width: 100%;
+    }
+}
 /* ===== ВКЛАДКИ ЭТАЖЕЙ ===== */
 .floor-selector {
     display: flex;
