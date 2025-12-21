@@ -436,62 +436,116 @@ input[type="radio"] {
 /* Адаптивность */
 @media (max-width: 1024px) {
     .floor-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
     }
     
+    /* Меняем порядок: 1) кнопки, 2) изображение, 3) информация */
     .floor-buttons {
-        flex-direction: row;
-        justify-content: center;
-        order: 3;
-        margin-top: 20px;
-    }
-    
-    .floor-button {
-        width: auto;
-        margin: 0 10px;
-    }
-    
-    .button-label {
-        display: none;
-    }
-    
-    .floor-info, .floor-visual {
         order: 1;
+        margin-bottom: 0;
+    }
+    
+    .floor-visual {
+        order: 2;
+    }
+    
+    .floor-info {
+        order: 3;
     }
 }
 
+/* Для мобильных телефонов */
 @media (max-width: 768px) {
-    .floor-header {
-        flex-direction: column;
-        align-items: flex-start;
+    /* Еще компактнее для телефонов */
+    .complex-header h1 {
+        font-size: 1.6rem;
     }
     
-    .floor-access {
-        margin-top: 10px;
+    .complex-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* Кнопки этажей в одну строку */
+    .floor-buttons {
+        flex-direction: row;
+        gap: 15px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        border: 1px solid var(--color-secondary);
+    }
+    
+    .floor-button {
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    .button-circle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .button-label {
+        font-size: 0.75rem;
+        text-align: center;
+        line-height: 1.2;
+    }
+    
+    /* Изображение этажа */
+    .floor-visual {
+        margin: 10px 0;
+    }
+    
+    .visual-caption {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* Информация об этаже */
+    .floor-info {
+        padding: 15px;
+    }
+    
+    .floor-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .floor-description {
+        padding: 10px;
+        font-size: 0.9rem;
     }
     
     .specs-list li {
-        flex-direction: column;
-        gap: 5px;
+        padding: 8px 0;
     }
     
-    .spec-label, .spec-value {
-        width: 100%;
-        text-align: left;
+    .spec-label {
+        min-width: 100px;
+        font-size: 0.85rem;
     }
     
-    .specimen-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
+    .spec-value {
+        font-size: 0.85rem;
     }
     
-    .specimen-status {
-        align-self: flex-start;
+    /* Предупреждения */
+    .floor-warning {
+        padding: 12px;
     }
     
-    .floor-buttons {
-        flex-wrap: wrap;
+    .warning-icon {
+        font-size: 1.2rem;
+    }
+    
+    .warning-text strong {
+        font-size: 0.9rem;
+    }
+    
+    .warning-text p {
+        font-size: 0.85rem;
     }
 }

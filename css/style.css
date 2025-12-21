@@ -1002,6 +1002,66 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
         align-items: flex-start;
         gap: 10px;
     }
+    .main-header {
+        padding: 10px 0;
+    }
+    .header-top {
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.75rem;
+        margin-top: 2px;
+    }
+    
+    /* Компактный блок доступа */
+    .access-level {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .access-badge {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        min-width: 85px;
+    }
+    
+    .access-light {
+        width: 8px;
+        height: 8px;
+    }
+    
+    /* Компактное меню */
+    .main-nav ul {
+        margin-top: 5px;
+        border-radius: 2px;
+    }
+    
+    .main-nav a {
+        padding: 8px 5px;
+        font-size: 0.75rem;
+        letter-spacing: 0;
+    }
+    
+    .main-nav a.nav-active::before {
+        left: 2px;
+        font-size: 0.7rem;
+    }
+    
+    /* Уменьшаем иконку замка */
+    .lock-icon {
+        font-size: 0.7rem;
+        margin-left: 4px;
+    }
 
     .staff-photo-container {
         margin-right: 0;
@@ -1018,10 +1078,6 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
         width: 150px; /* Совпадает с шириной фото */
         padding: 5px 10px;
         font-size: 0.75rem;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
     }
     
     .floor-selector {
@@ -1044,8 +1100,201 @@ input[type="radio"]:checked + .floor-tabs .floor-tab {
     .complex-layout {
         flex-direction: column;
     }
+
 }
 
+/* ===== ОБЩИЕ УЛУЧШЕНИЯ ДЛЯ МОБИЛЬНЫХ ===== */
+
+@media (max-width: 768px) {
+    /* Общие улучшения для всех страниц */
+    main.container {
+        padding-top: 10px;
+    }
+    
+    /* Заголовки секций */
+    h1, h2, .dossier-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Карточки проектов на главной */
+    .task-card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .task-icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    
+    /* Логи на главной */
+    .log-entry {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .log-header {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .log-date, .log-author {
+        font-size: 0.8rem;
+    }
+    
+    /* Кнопки */
+    .btn-confirm, .btn-log, .btn-details {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Модальные окна */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+    }
+    
+    .modal-body {
+        padding: 20px 15px;
+    }
+    
+    .warning-text {
+        font-size: 2.5rem;
+    }
+    
+    .warning-pulse {
+        width: 80px;
+        height: 80px;
+        top: calc(50% - 40px);
+        left: calc(50% - 40px);
+    }
+    
+    .access-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .level-badge {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    
+    /* Подвал */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .footer-info, .footer-meta {
+        font-size: 0.8rem;
+    }
+    
+    /* Карточки образцов на blinks.html */
+    .specimen-card {
+        padding: 15px;
+    }
+    
+    .specimen-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .specimen-visual {
+        margin: 15px 0;
+    }
+    
+    .property-bar {
+        margin: 5px 0;
+    }
+    
+    .property-name {
+        font-size: 0.9rem;
+    }
+    
+    /* Уведомления */
+    .high-alert .alert-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .alert-icon {
+        font-size: 1.5rem;
+    }
+    
+    .specimens-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-box {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Еще более компактно для маленьких экранов */
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    /* Еще меньше отступы */
+    main.container {
+        padding-top: 5px;
+    }
+    
+    h1, h2, .dossier-title {
+        font-size: 1.3rem;
+    }
+    
+    /* Карточки еще компактнее */
+    .staff-card, .specimen-card {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    
+    .staff-card-header, .specimen-header {
+        padding: 12px;
+    }
+    
+    /* Убираем некоторые второстепенные элементы */
+    .caption-note, .note-author, .log-tag {
+        font-size: 0.7rem;
+    }
+    
+    /* Упрощаем формы */
+    .form-input, .login-btn {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    /* Кнопка выхода */
+    .logout-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+}
 /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ ПЕРСОНАЛОМ ===== */
 
 
