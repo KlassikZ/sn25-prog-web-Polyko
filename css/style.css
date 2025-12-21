@@ -447,36 +447,74 @@ body {
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    .staff-card-body {
+   .staff-card-body {
         flex-direction: column;
     }
     
-    .staff-photo-container {
-        width: 100%;
-        align-items: center;
-    }
-    
-    .staff-photo {
-        width: 200px;
-        height: 240px;
-    }
-    
-    .status-badge {
-        width: 200px;
+    /* Меняем порядок: сначала информация, потом фото */
+    .staff-card-body {
+        display: flex;
+        flex-direction: column;
     }
     
     .staff-info {
-        min-width: 100%;
+        order: 1; /* Информация будет первой */
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .staff-photo-container {
+        order: 2; /* Фото и статус будут вторыми */
+        width: 100%;
+        align-items: center;
+        margin-top: 20px;
+    }
+    
+    /* Улучшаем внешний вид для мобильных */
+    .staff-name {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    
+    .staff-position {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 20px;
     }
     
     .staff-stats {
         justify-content: center;
+        gap: 15px;
     }
     
     .stat {
-        min-width: 140px;
+        min-width: 45%;
+        text-align: center;
+        padding: 10px 15px;
+    }
+    
+    .staff-photo {
+        width: 220px;
+        height: 260px;
+        margin: 0 auto 15px;
+    }
+    
+    .status-badge {
+        width: 220px;
+        margin: 0 auto;
+    }
+    
+    /* Улучшаем читаемость текста */
+    .staff-bio, .staff-note {
+        padding: 15px;
+    }
+    
+    .staff-bio li {
+        padding: 6px 0 6px 20px;
+        font-size: 0.95rem;
     }
 }
+
 /* ===== ВКЛАДКИ ЭТАЖЕЙ ===== */
 .floor-selector {
     display: flex;
