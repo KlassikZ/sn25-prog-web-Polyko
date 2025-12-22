@@ -108,14 +108,6 @@
                 </div>
             </article>
 
-            <div class="access-confirmation">
-                <p class="confirmation-text">Для получения доступа к полному архиву подтвердите ознакомление с документом</p>
-                <button id="accessConfirmBtn" class="confirm-btn">
-                    <span class="btn-text">ПОДТВЕРДИТЬ ОЗНАКОМЛЕНИЕ</span>
-                    <span class="btn-loader"></span>
-                </button>
-                <p class="confirmation-hint">Доступ к разделам "ПЕРСОНАЛ" и "ОБРАЗЦЫ" будет открыт после подтверждения</p>
-            </div>
         </section>
 
         <!-- Секция "последние записи" для атмосферы -->
@@ -178,85 +170,7 @@
                 }, 2000);
             }
             
-            // Кнопка подтверждения ознакомления
-            const confirmBtn = document.getElementById('accessConfirmBtn');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', function() {
-                    const btnText = this.querySelector('.btn-text');
-                    const loader = this.querySelector('.btn-loader');
-                    
-                    // Анимация нажатия
-                    this.style.transform = 'scale(0.98)';
-                    btnText.textContent = 'ПОДТВЕРЖДАЕТСЯ...';
-                    this.disabled = true;
-                    
-                    // Анимация загрузки
-                    loader.style.width = '50px';
-                    loader.style.height = '50px';
-                    loader.style.opacity = '1';
-                    
-                    // Симулируем задержку обработки
-                    setTimeout(() => {
-                        // Успешное подтверждение
-                        this.style.background = 'linear-gradient(135deg, #00aa00, #005500)';
-                        this.style.borderColor = '#80ff80';
-                        btnText.textContent = 'ПОДТВЕРЖДЕНО ✓';
-                        loader.style.opacity = '0';
-                        
-                        // Сохраняем статус подтверждения
-                        const user = JSON.parse(sessionStorage.getItem('ibki_user'));
-                        if (user) {
-                            user.confirmedAccess = true;
-                            sessionStorage.setItem('ibki_user', JSON.stringify(user));
-                        }
-                        
-                        // Показываем сообщение
-                        const hint = document.querySelector('.confirmation-hint');
-                        if (hint) {
-                            hint.innerHTML = '✅ Доступ к разделам "ПЕРСОНАЛ" и "ОБРАЗЦЫ" открыт. Обновите страницу для применения изменений.';
-                            hint.style.color = '#80ff80';
-                        }
-                        
-                        // Анимация успеха
-                        setTimeout(() => {
-                            this.style.transform = 'translateY(0)';
-                        }, 100);
-                        
-                    }, 1500);
-                });
-                
-                // Эффект при наведении
-                confirmBtn.addEventListener('mouseenter', function() {
-                    if (!this.disabled) {
-                        this.style.transform = 'translateY(-2px)';
-                    }
-                });
-                
-                confirmBtn.addEventListener('mouseleave', function() {
-                    if (!this.disabled) {
-                        this.style.transform = 'translateY(0)';
-                    }
-                });
-            }
             
-            // Проверяем, было ли уже подтверждение
-            const user = JSON.parse(sessionStorage.getItem('ibki_user'));
-            if (user && user.confirmedAccess) {
-                const confirmBtn = document.getElementById('accessConfirmBtn');
-                const hint = document.querySelector('.confirmation-hint');
-                
-                if (confirmBtn) {
-                    confirmBtn.style.background = 'linear-gradient(135deg, #00aa00, #005500)';
-                    confirmBtn.style.borderColor = '#80ff80';
-                    confirmBtn.querySelector('.btn-text').textContent = 'ДОСТУП ПОДТВЕРЖДЕН ✓';
-                    confirmBtn.disabled = true;
-                }
-                
-                if (hint) {
-                    hint.innerHTML = '✅ Доступ к разделам "ПЕРСОНАЛ" и "ОБРАЗЦЫ" открыт.';
-                    hint.style.color = '#80ff80';
-                }
-            }
         });
     </script>
 <!-- Модальное окно для сообщения о недостаточном доступе -->
