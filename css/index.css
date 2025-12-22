@@ -5,71 +5,7 @@
     margin-bottom: 40px;
 }
 
-/* Уведомление о секретности */
-.access-warning {
-    background: linear-gradient(135deg, rgba(255, 0, 64, 0.1), rgba(255, 0, 64, 0.05));
-    border: 2px solid var(--color-danger);
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 
-        0 0 20px rgba(255, 0, 64, 0.1),
-        inset 0 0 20px rgba(255, 0, 64, 0.05);
-    position: relative;
-    overflow: hidden;
-}
 
-.access-warning::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--color-danger) 50%, 
-        transparent 100%);
-    animation: warningGlow 3s infinite;
-}
-
-@keyframes warningGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
-.warning-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.warning-icon {
-    font-size: 2rem;
-    animation: warningPulse 2s infinite;
-}
-
-@keyframes warningPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.warning-header h2 {
-    color: #ff6666;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.warning-text {
-    color: #ff9999;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    padding-left: 45px;
-    border-left: 2px solid var(--color-danger);
-}
 
 /* Досье проекта */
 .project-dossier {
@@ -331,6 +267,7 @@
 .dossier-section.critical h3 {
     color: #ff6666;
 }
+
 
 /* Журнал записей */
 .recent-log {
